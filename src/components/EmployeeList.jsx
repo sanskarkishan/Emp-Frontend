@@ -72,7 +72,7 @@ const EmployeeList = () => {
                   onClick={(e,id) => deleteEmployee(e, employee.id)}>DELETE
                 </a>
                 <a className="hover:bg-green-600 bg-green-500 text-white font-mono rounded px-3 py-1 mx-2"
-                onClick={(e,id) => updateEmployee(e, employee.id)}>UPDATE
+                onClick={(e,id) => updateEmployee(e, employee.id)}>EDIT
                 </a>
               </td>
             </tr>
