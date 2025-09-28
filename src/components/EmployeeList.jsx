@@ -63,9 +63,9 @@ const EmployeeList = () => {
             {employees.map((employee) => (
             <tr className="hover:bg-blue-600 hover:text-white">
               <td className="text-center py-2 px-6 whitespace-nowrap">{employee.id}</td>
-              <td className="text-center py-2 px-6 whitespace-nowrap">{employee.name}</td>
+              <td className="py-2 px-6 whitespace-nowrap">{employee.name}</td>
               <td className="text-center py-2 px-6 whitespace-nowrap">{employee.phone}</td>
-              <td className="text-center py-2 px-6 whitespace-nowrap">{employee.email}</td>
+              <td className="py-2 px-6 whitespace-nowrap">{employee.email}</td>
               <td className="text-center py-2 px-10 whitespace-nowrap">{employee.depart}</td>
               <td>
                 <a className=" hover:bg-red-600 bg-red-500 text-white font-mono rounded px-3 py-1 mx-2"
