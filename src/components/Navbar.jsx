@@ -8,6 +8,7 @@ const Navbar = () => {
         <div className="flex space-x-4">
         <a className="hover:text-blue-400" href="/">HOME </a>
         <a className="hover:text-blue-400" href="/">PROFILE </a>
+        <a className="hover:text-blue-400" href="https://github.com/sanskarkishan/Employee-Database-React-SpringBoot-.git" target="_blank">REPO </a>
         <a className="hover:text-blue-400" href="/">LOGOUT</a>
         </div>
       </div>

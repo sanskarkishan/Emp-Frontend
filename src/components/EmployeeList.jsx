@@ -58,6 +58,15 @@ const EmployeeList = () => {
             <th className="px-9 py-2 tracking-widest">Department</th>
             <th className="px-9 py-2 tracking-widest">ACTION</th>
           </thead>
+          {loading && (
+            <tbody>
+              <tr>  
+                <td colSpan={6} className="text-center py-4">
+                  <p className='text-2xl font-bold'>Loading...</p>
+                </td>
+              </tr>
+            </tbody>
+          )}
           {!loading && (
           <tbody>
             {employees.map((employee) => (
@@ -68,10 +77,10 @@ const EmployeeList = () => {
               <td className="py-2 px-6 whitespace-nowrap">{employee.email}</td>
               <td className="text-center py-2 px-10 whitespace-nowrap">{employee.depart}</td>
               <td>
-                <a className=" hover:bg-red-600 bg-red-500 text-white font-mono rounded px-3 py-1 mx-2"
+                <a className=" hover:bg-red-600 bg-red-500 text-white font-mono rounded px-3 py-1 mx-2 cursor-pointer"
                   onClick={(e,id) => deleteEmployee(e, employee.id)}>DELETE
                 </a>
-                <a className="hover:bg-green-600 bg-green-500 text-white font-mono rounded px-3 py-1 mx-2"
+                <a className="hover:bg-green-600 bg-green-500 text-white font-mono rounded px-3 py-1 mx-2 cursor-pointer"
                 onClick={(e,id) => updateEmployee(e, employee.id)}>EDIT
                 </a>
               </td>
