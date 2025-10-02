@@ -1,66 +1,107 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import EmployeeService from '../services/EmployeeService'
 
 const UpdateEmployee = () => {
-    const navigate = useNavigate();
-    const {id} = useParams();
-    const [employee, setEmployee] = React.useState({
-        id: id,
-        name: "",
-        phone: "",
-        email: "",
-        depart: ""
-    }) 
-    const handleChange = (e) => {   
-        setEmployee({...employee, [e.target.name]: e.target.value})
-    }
-    
-    useEffect(() => {
-        const fetchData = async () => {
-          
-          try {
-            const response = await EmployeeService.getEmployeeById(employee.id);
-            setEmployee(response.data); 
-          } catch (error) {
-            console.log(error);
-          }
-          
-        };
-        fetchData();
-      }, []);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-    const updateEmployee = (e) => {
-        e.preventDefault();
-        EmployeeService.updateEmployee(employee,id).then((responce) => {
-            console.log("Saved",responce);
-            navigate("/");
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
+  const [employee, setEmployee] = React.useState({
+    id: id,
+    name: "",
+    phone: "",
+    email: "",
+    depart: ""
+  });
+
+  const handleChange = (e) => {
+    setEmployee({ ...employee, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await EmployeeService.getEmployeeById(employee.id);
+        setEmployee(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const updateEmployee = (e) => {
+    e.preventDefault();
+    EmployeeService.updateEmployee(employee, id)
+      .then((response) => {
+        console.log("Updated", response);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <div className="flex items-center justify-center">
-        <div className="mx-44 max-w-xl my-20 rounded shadow bg-slate-400 px-10 py-4">
-        <h1 className="font-bold my-5 text-white text-xl">Update Employee</h1>
-        <div className="flex flex-col space-y-4">
-        <input value={employee.name} onChange={(e)=> handleChange(e)} name='name' className="rounded-full w-full py-2 p-4" type="text" placeholder="Enter Name" ></input>
-        <input value={employee.phone} onChange={(e)=> handleChange(e)} name='phone' className="rounded-full w-full py-2 p-4" type="number" placeholder="Enter Phone" ></input>
-        <input value={employee.email} onChange={(e)=> handleChange(e)} name='email' className="rounded-full w-full py-2 p-4" type="email" placeholder="Enter Email" ></input>
-        <input value={employee.depart} onChange={(e)=> handleChange(e)} name='depart' className="rounded-full w-full py-2 p-4" type="text" placeholder="Enter Department" ></input>
-        </div>
-        <div className="flex justify-between my-5 mx-5 ">
-            <button onClick={updateEmployee} className="bg-white rounded hover:bg-green-600 hover:text-white px-7 py-2 mx-14">UPDATE</button>
-            
-            <button onClick={()=> navigate("/")} className="bg-white rounded hover:bg-red-600 hover:text-white px-7 py-2 mx-20">CANCEL</button>
-        </div>
+    <div className="flex items-center justify-center min-h-screen px-4">
+      <div className="w-full max-w-md sm:max-w-lg md:max-w-xl rounded-xl  bg-slate-700/50 shadow-lg px-6 py-8 bg-transparent">
         
-    </div>
-    </div>
-  )
-}
+        <h1 className="font-bold mb-6 text-white text-2xl text-center">
+          Update Employee
+        </h1>
 
-export default UpdateEmployee
+        <div className="flex flex-col space-y-4">
+          <input
+            value={employee.name}
+            onChange={handleChange}
+            name="name"
+            className="rounded-lg w-full py-2 px-4 text-sm sm:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="text"
+            placeholder="Enter Name"
+          />
+          <input
+            value={employee.phone}
+            onChange={handleChange}
+            name="phone"
+            className="rounded-lg w-full py-2 px-4 text-sm sm:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="number"
+            placeholder="Enter Phone"
+          />
+          <input
+            value={employee.email}
+            onChange={handleChange}
+            name="email"
+            className="rounded-lg w-full py-2 px-4 text-sm sm:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="email"
+            placeholder="Enter Email"
+          />
+          <input
+            value={employee.depart}
+            onChange={handleChange}
+            name="depart"
+            className="rounded-lg w-full py-2 px-4 text-sm sm:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="text"
+            placeholder="Enter Department"
+          />
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4 mt-8">
+          <button
+            onClick={updateEmployee}
+            className="w-full sm:w-auto bg-white border border-gray-300 rounded-lg px-6 py-2 hover:bg-green-600 hover:text-white transition"
+          >
+            UPDATE
+          </button>
+          <button
+            onClick={() => navigate("/")}
+            className="w-full sm:w-auto bg-white border border-gray-300 rounded-lg px-6 py-2 hover:bg-red-600 hover:text-white transition"
+          >
+            CANCEL
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UpdateEmployee;
