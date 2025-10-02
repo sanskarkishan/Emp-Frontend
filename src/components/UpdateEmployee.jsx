@@ -44,7 +44,7 @@ const UpdateEmployee = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4">
-      <div className="w-full max-w-md sm:max-w-lg md:max-w-xl rounded-xl  bg-slate-700/50 shadow-lg px-6 py-8 bg-transparent">
+      <div className="w-full max-w-md sm:max-w-lg md:max-w-xl rounded-xl  bg-slate-700/50 shadow-lg px-6 py-8">
         
         <h1 className="font-bold mb-6 text-white text-2xl text-center">
           Update Employee
