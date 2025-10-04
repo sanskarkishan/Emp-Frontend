@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const EMPLOYEE_S_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 class EmployeeService{
     
-    saveEmployee(employee){
+    createEmployee(employee){
         return axios.post(EMPLOYEE_S_API_BASE_URL, employee);
     }
 
